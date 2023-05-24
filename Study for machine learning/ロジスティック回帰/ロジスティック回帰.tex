@@ -3,7 +3,8 @@
 \usepackage{fancyhdr}
 \usepackage[top=25truemm,bottom=20truemm,left=20truemm,right=20truemm]{geometry}
 \usepackage[listings]{tcolorbox}
-% \usepackage{ascmac}
+\usepackage{ascmac}
+\usepackage{amsmath} %数式
 \def\Date{2023/5/23}
 \def\ClassNum{}
 \def\Subject{}
@@ -45,11 +46,22 @@
 ロジスティック回帰に適しているのは、求めたい目的変数が明確なシーンである。購入の有無、台風・落雷が発生するかしないか、病気に罹るか罹らないかなどの予測にはロジスティック回帰が向いている。
 逆に目的変数が曖昧なときや、数値を知りたいときにはロジスティック回帰は向いない。
 \section{ロジット関数}
-ロジスティック回帰は，線形回帰の結果を0-1の間に収めるために，ロジット関数を用いる．\par
+ロジスティック回帰は，\textbf{線形回帰の結果を0-1の間に収めるため}に，ロジット関数を用いる．\par
 \begin{equation}
   ロジット関数=logit(p)=log\frac{p}{1-p}
 \end{equation}
 ロジット関数は，オッズの対数をとったものである．\par
+\section{ロジスティック回帰の式}
+回帰において，連続的な値に対してはax+bというのがもとまる．しかし，今回のように\textbf{離散的}な値を取るにはこれを変える必要がある．
+そこで登場するのが\textbf{リンク関数}で,ロジスティック回帰には，ロジット関数を使う．（一般化回帰には必須？）
+（リンク関数によって，\textbf{連続的な値を離散的な値に変換する}ことができるってことだと思う）\par
+\begin{align}
+  log\frac{p}{1-p}  & =ax+b                             \\
+  \Leftrightarrow p & =\frac{1}{1+e^{-(ax+b)}} ←図1みたいな式
+\end{align}
+Pythonで計算した後に出てくる切片と傾きは，この式のaとbだと思われる．\par
+\section{評価}
+分類系のものの評価は，Confusion Matrixを用いるのが良いそう．（大森先生より）\par
 \section{ロジスティック回帰の種類}
 \subsection{二項ロジスティック回帰}
 二項ロジスティック回帰は，被説明変数が2値の場合に用いられる．\par
